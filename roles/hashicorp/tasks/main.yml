@@ -1,0 +1,38 @@
+---
+- name: Get stats of Hashicorp key
+  ansible.builtin.stat:
+    path: "{{ hashicorp_key }}"
+  register: result
+
+- name: Install Hashicorp key
+  when: not result.stat.exists
+  block:
+    - name: Download Hashicorp key
+      ansible.builtin.get_url:
+        url: https://apt.releases.hashicorp.com/gpg
+        dest: "{{ hashicorp_armored_key }}"
+        mode: '0664'
+
+    - name: Dearmor hashicorp.asc
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          cat "{{ hashicorp_armored_key }}" | gpg --dearmor > "{{ hashicorp_key }}"
+        creates: "{{ hashicorp_key }}"
+        executable: /bin/bash
+
+    - name: Remove {{ hashicorp_armored_key }}
+      ansible.builtin.file:
+        path: "{{ hashicorp_armored_key }}"
+        state: absent
+
+- name: Add Hashicorp APT repository
+  ansible.builtin.apt_repository:
+    repo: >-
+      deb [signed-by=/etc/apt/trusted.gpg.d/packages.hashicorp.gpg]
+      https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+
+- name: Install Hashicorp packages
+  ansible.builtin.apt:
+    name: "{{ hashicorp_packages }}"
+    update_cache: "yes"

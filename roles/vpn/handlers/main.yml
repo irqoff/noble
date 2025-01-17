@@ -1,0 +1,5 @@
+---
+- name: Restart WireGuard
+  ansible.builtin.systemd:
+    state: "{{ vpn_enabled | ternary('restarted', 'stopped') }}"
+    name: wg-quick@wg

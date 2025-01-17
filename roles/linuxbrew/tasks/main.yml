@@ -1,0 +1,54 @@
+---
+- name: Install linuxbrew
+  ansible.builtin.git:
+    repo: https://github.com/Homebrew/brew
+    dest: "{{ ansible_env['HOME'] }}/.linuxbrew/Homebrew"
+    version: master
+
+- name: Create .linuxbrew/bin
+  ansible.builtin.file:
+    dest: "{{ ansible_env['HOME'] }}/.linuxbrew/bin"
+    state: directory
+    mode: '0770'
+
+- name: Create symlink
+  ansible.builtin.file:
+    src: "{{ ansible_env['HOME'] }}/.linuxbrew/Homebrew/bin/brew"
+    dest: "{{ ansible_env['HOME'] }}/.linuxbrew/bin/brew"
+    state: link
+
+- name: Configure .bashrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env['HOME'] }}/.bashrc_{{ ansible_env['USER'] }}"
+    insertbefore: "^# pyenv_begin"
+    marker_begin: linuxbrew_begin
+    marker_end: linuxbrew_end
+    marker: "# {mark}"
+    block: |
+      eval $(~/.linuxbrew/bin/brew shellenv)
+      source ~/.linuxbrew/Homebrew/completions/bash/brew
+
+- name: Install brew packages from source
+  community.general.homebrew:
+    name: "{{ linuxbrew_packages_build }}"
+    install_options: build-from-source
+  tags: ["linuxbrew_packages"]
+
+- name: Install brew packages
+  community.general.homebrew:
+    name: "{{ linuxbrew_packages }}"
+  tags: ["linuxbrew_packages"]
+
+- name: Install Go tools
+  ansible.builtin.command: go install -v {{ item }}
+  loop: "{{ linuxbrew_go_packages }}"
+  register: result
+  changed_when: "'downloading' in result.stderr"
+  tags: ["linuxbrew_packages"]
+
+- name: Install krew plugins
+  ansible.builtin.command: kubectl krew install {{ item }}
+  loop: "{{ linuxbrew_krew_packages }}"
+  register: result
+  changed_when: "'Installed' in result.stdout"
+  tags: ["linuxbrew_packages"]

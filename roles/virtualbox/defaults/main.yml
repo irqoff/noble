@@ -1,0 +1,3 @@
+---
+virtualbox_key: /etc/apt/trusted.gpg.d/packages.oracle_vbox_2016.gpg
+virtualbox_armored_key: /etc/apt/trusted.gpg.d/oracle_vbox_2016.asc

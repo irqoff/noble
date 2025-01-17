@@ -1,0 +1,7 @@
+---
+hashicorp_key: /etc/apt/trusted.gpg.d/packages.hashicorp.gpg
+hashicorp_armored_key: /etc/apt/trusted.gpg.d/hashicorp.asc
+hashicorp_packages:
+  - packer
+  - terraform
+  - vagrant

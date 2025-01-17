@@ -1,0 +1,10 @@
+---
+common_packages:
+  - chromium-browser
+  - fbreader
+  - gnupg2
+  - pass
+  - vlc
+  - wl-clipboard
+
+common_snap_packages: []

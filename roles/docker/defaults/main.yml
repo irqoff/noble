@@ -1,0 +1,6 @@
+---
+docker_key: /etc/apt/trusted.gpg.d/packages.docker.gpg
+docker_armored_key: /etc/apt/trusted.gpg.d/docker.asc
+docker_images:
+  - fedora:rawhide
+  - ubuntu:rolling

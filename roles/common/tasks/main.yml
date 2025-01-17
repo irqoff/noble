@@ -1,0 +1,67 @@
+---
+- name: Install common packages
+  ansible.builtin.apt:
+    name: "{{ common_packages }}"
+  become: True
+  register: result
+  retries: 5
+  delay: 20
+  until: result is not failed
+
+- name: Install snap common packages
+  community.general.snap:
+    name: "{{ common_snap_packages }}"
+  become: True
+
+- name: Copy .gitconfig
+  ansible.builtin.template:
+    src: gitconfig
+    dest: "{{ ansible_env['HOME'] }}/.gitconfig"
+    mode: "0640"
+
+- name: Create .config/nvim
+  ansible.builtin.file:
+    state: directory
+    path: "{{ ansible_env['HOME'] }}/.config/nvim"
+    mode: "0770"
+
+- name: Copy .vimrc
+  ansible.builtin.copy:
+    src: vimrc
+    dest: "{{ ansible_env['HOME'] }}/.config/nvim/init.vim"
+    mode: "0640"
+
+- name: Install Oh My Tmux
+  ansible.builtin.git:
+    repo: https://github.com/gpakosz/.tmux.git
+    dest: "{{ ansible_env['HOME'] }}/.tmux"
+    version: master
+
+- name: Create .tmux link
+  ansible.builtin.file:
+    src: "{{ ansible_env['HOME'] }}/.tmux/.tmux.conf"
+    dest: "{{ ansible_env['HOME'] }}/.tmux.conf"
+    state: link
+
+- name: Copy .tmux.conf.local
+  ansible.builtin.copy:
+    src: tmux.conf.local
+    dest: "{{ ansible_env['HOME'] }}/.tmux.conf.local"
+    mode: "0640"
+
+- name: Configure sudo
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers"
+    line: "{{ ansible_env['USER'] }} ALL=(ALL:ALL) NOPASSWD: /usr/bin/apt,/sbin/reboot,/sbin/shutdown"
+    state: present
+    regexp: "^{{ ansible_env['USER'] }} ALL"
+    validate: /usr/sbin/visudo -cf %s
+  become: True
+
+- name: Add cron job
+  ansible.builtin.cron:
+    name: "Cron commit"
+    minute: "*/10"
+    job: "cd /home/{{ ansible_env['USER'] }}/docs && /usr/bin/git add . && /usr/bin/git commit -m 'cron commit'"
+  tags: ["cron"]
+  when: (common_cron | default(False)) | bool

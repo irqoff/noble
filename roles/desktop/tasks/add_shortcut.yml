@@ -1,0 +1,7 @@
+---
+- name: Add shortcut {{ key.key }}
+  ansible.legacy.dconf:  # noqa: fqcn[canonical]
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ key.key }}/{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ key['values'] }}"

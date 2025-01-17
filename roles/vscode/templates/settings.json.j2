@@ -1,0 +1,24 @@
+{
+    "terminal.integrated.fontFamily": "'Source Code Pro'",
+    "workbench.startupEditor": "none",
+    "go.alternateTools": {
+        "go": "{{ ansible_env['HOME'] }}/.linuxbrew/bin/go"
+    },
+    "redhat.telemetry.enabled": false,
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path": "{{ ansible_env['HOME'] }}/.linuxbrew/bin/helm",
+        "vscode-kubernetes.kubectl-path": "{{ ansible_env['HOME'] }}/.linuxbrew/bin/kubectl",
+        "vscode-kubernetes.minikube-path": "{{ ansible_env['HOME'] }}/.linuxbrew/bin/minikube"
+    },
+    "python.defaultInterpreterPath": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/python3",
+    "ansible.validation.lint.path": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/ansible-lint",
+    "ansible.ansible.path": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/ansible",
+    "ansible.python.interpreterPath": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/python3",
+    "yaml.customTags": [
+        "!reference sequence"
+    ],
+    "cmake.showOptionsMovedNotification": false,
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    }
+}

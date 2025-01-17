@@ -1,0 +1,26 @@
+---
+- name: Install WireGuard
+  ansible.builtin.apt:
+    name: wireguard
+
+- name: Create resolvconf symbolic link
+  ansible.builtin.file:
+    src: /usr/bin/resolvectl
+    dest: /usr/local/bin/resolvconf
+    owner: root
+    group: root
+    state: link
+
+- name: Copy WireGuard configuration
+  ansible.builtin.copy:
+    src: "gitignore/wg.conf"
+    dest: "/etc/wireguard/wg.conf"
+    mode: '0600'
+  notify: Restart WireGuard
+  no_log: True
+
+- name: Enable VPN
+  ansible.builtin.systemd:
+    state: "{{ vpn_enabled | ternary('started', 'stopped') }}"
+    enabled: yes
+    name: wg-quick@wg

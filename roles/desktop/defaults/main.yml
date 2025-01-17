@@ -1,0 +1,111 @@
+---
+desktop_gnome_configuration:
+  - {key: desktop/input-sources/sources,
+     value: "[('xkb', 'us'), ('xkb', 'ru'), ('xkb', 'gr')]"}
+  - {key: desktop/interface/color-scheme, value: "'prefer-dark'"}
+  - {key: desktop/interface/gtk-theme, value: "'Yaru-dark'"}
+  - {key: desktop/interface/icon-theme, value: "'Yaru'"}
+  - {key: desktop/notifications/show-in-lock-screen, value: "false"}
+  - {key: desktop/privacy/remember-recent-files, value: "false"}
+  - {key: desktop/screensaverlock-delay/lock-delay, value: "uint32 0"}
+  - {key: desktop/search-providers/disable-external, value: "true"}
+  - {key: desktop/session/idle-delay, value: "uint32 900"}
+  - {key: settings/file-chooser/show-hidden, value: "false"}
+  - {key: settings-daemon/plugins/power/sleep-inactive-ac-timeout,
+     value: "3600"}
+  - {key: settings-daemon/plugins/power/sleep-inactive-ac-type,
+     value: "'nothing'"}
+  - {key: shell/extensions/dash-to-dock/dock-fixed, value: "false"}
+
+desktop_shortcuts:
+  - {
+    key: custom0,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>n'"},
+      {name: "command", value: "'/usr/bin/nautilus'"},
+      {name: "name", value: "'nautilus'"}
+    ]
+  }
+  - {
+    key: custom1,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>f'"},
+      {name: "command", value: "'/snap/bin/firefox'"},
+      {name: "name", value: "'firefox'"}
+    ]
+  }
+  - {
+    key: custom2,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>c'"},
+      {name: "command", value: "'/usr/bin/chromium-browser'"},
+      {name: "name", value: "'chromium-browser'"}
+    ]
+  }
+  - {
+    key: custom3,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>v'"},
+      {name: "command", value: "'/usr/bin/VirtualBox'"},
+      {name: "name", value: "'VirtualBox'"}
+    ]
+  }
+  - {
+    key: custom4,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>i'"},
+      {name: "command", value: "'/usr/bin/code-insiders'"},
+      {name: "name", value: "'code-insiders'"}
+    ]
+  }
+  - {
+    key: custom5,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>3'"},
+      {name: "command", value: "'/usr/bin/gdbus call --session --dest org.gnome.Shell
+      --object-path /org/gnome/Shell/Extensions/SwitchKeyboardLayout
+      --method org.gnome.Shell.Extensions.SwitchKeyboardLayout.Call 1'"},
+      {name: "name", value: "'ru'"}
+    ]
+  }
+  - {
+    key: custom6,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>2'"},
+      {name: "command", value: "'/usr/bin/gdbus call --session --dest org.gnome.Shell
+      --object-path /org/gnome/Shell/Extensions/SwitchKeyboardLayout
+      --method org.gnome.Shell.Extensions.SwitchKeyboardLayout.Call 2'"},
+      {name: "name", value: "'gr'"}
+    ]
+  }
+  - {
+    key: custom7,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>1'"},
+      {name: "command", value: "'/usr/bin/gdbus call --session --dest org.gnome.Shell
+      --object-path /org/gnome/Shell/Extensions/SwitchKeyboardLayout
+      --method org.gnome.Shell.Extensions.SwitchKeyboardLayout.Call 0'"},
+      {name: "name", value: "'en'"}
+    ]
+  }
+
+desktop_terminal_profiles: ":b1dcc9dd-5262-4d8d-a863-c897e6d979b9"
+
+desktop_hidden: |
+  Desktop
+  docs
+  Documents
+  Downloads
+  noble
+  go
+  Music
+  Pictures
+  Public
+  snap
+  Templates
+  Videos
+
+desktop_bookmarks: |
+  file:///srv
+
+desktop_logitech: False

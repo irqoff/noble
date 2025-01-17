@@ -1,0 +1,54 @@
+---
+- name: Get stats of Visual Studio Code key
+  ansible.builtin.stat:
+    path: "{{ vscode_key }}"
+  register: result
+
+- name: Install Visual Studio Code key
+  when: not result.stat.exists
+  become: true
+  block:
+    - name: Download Visual Studio Code key
+      ansible.builtin.get_url:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        dest: "{{ vscode_armored_key }}"
+        mode: '0664'
+
+    - name: Dearmor microsoft.asc
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          cat "{{ vscode_armored_key }}" | gpg --dearmor > "{{ vscode_key }}"
+        creates: "{{ vscode_key }}"
+        executable: /bin/bash
+
+    - name: Remove {{ vscode_armored_key }}
+      ansible.builtin.file:
+        path: "{{ vscode_armored_key }}"
+        state: absent
+
+- name: Add Visual Studio Code APT repository
+  ansible.builtin.apt_repository:
+    repo: >-
+      deb [arch=amd64 signed-by={{ vscode_key }}]
+      https://packages.microsoft.com/repos/code stable main
+    filename: vscode
+  become: true
+
+- name: Install Visual Studio Code
+  ansible.builtin.apt:
+    name:
+      - code-insiders
+    update_cache: "yes"
+  become: true
+
+- name: Install vscode plugins
+  vscode:
+    name: "{{ item }}"
+  loop: "{{ vscode_plugins }}"
+
+- name: Copy vscode configuration
+  ansible.builtin.template:
+    src: settings.json.j2
+    dest: "{{ ansible_env['HOME'] }}/.config/Code - Insiders/User/settings.json"
+    mode: '0664'

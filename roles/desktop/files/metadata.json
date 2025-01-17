@@ -1,0 +1,8 @@
+{
+	"name": "Switch keyboard layout",
+	"description": "Switch to a specific keyboard layout",
+	"uuid": "switch-keyboard-layout@ansible",
+	"shell-version": [
+		"46"
+	]
+}

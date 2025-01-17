@@ -1,0 +1,5 @@
+---
+enable_vpn: no
+bash_functions: yes
+common_cron: yes
+desktop_logitech: yes

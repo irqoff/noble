@@ -1,0 +1,19 @@
+---
+python_files:
+  - src: apt
+    dst: apt
+  - src: apt_inst.cpython-312-x86_64-linux-gnu.so
+    dst: apt_inst.so
+  - src: apt_pkg.cpython-312-x86_64-linux-gnu.so
+    dst: apt_pkg.so
+  - src: aptsources
+    dst: aptsources
+
+python_version_local: "{{ ansible_env['python_version'] | default('3.13.0') }}"
+
+python_pip_packages:
+  - ansible
+  - ansible-lint
+  - docker
+  - psutil
+  - yamllint

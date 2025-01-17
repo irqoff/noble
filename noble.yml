@@ -1,0 +1,30 @@
+---
+- name: Noble configuration
+  hosts: localhost
+  connection: local
+  roles:
+    - role: python
+      tags: python
+    - role: vpn
+      tags: vpn
+      when: enable_vpn | d() | bool
+      become: true
+    - role: common
+      tags: common
+    - role: docker
+      tags: docker
+      become: true
+    - role: virtualbox
+      tags: virtualbox
+      become: true
+    - role: hashicorp
+      tags: hashicorp
+      become: true
+    - role: vscode
+      tags: vscode
+    - role: bash
+      tags: bash
+    - role: desktop
+      tags: desktop
+    - role: linuxbrew
+      tags: linuxbrew

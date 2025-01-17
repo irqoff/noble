@@ -1,0 +1,22 @@
+---
+vscode_key: /etc/apt/trusted.gpg.d/packages.microsoft.gpg
+vscode_armored_key: /etc/apt/trusted.gpg.d/microsoft.asc
+
+vscode_plugins:
+  - davidanson.vscode-markdownlint
+  - foxundermoon.shell-format
+  - github.copilot
+  - gitlab.gitlab-workflow
+  - golang.go-nightly
+  - hashicorp.hcl
+  - hashicorp.terraform
+  - marp-team.marp-vscode
+  - ms-azuretools.vscode-docker
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  - ms-toolsai.jupyter
+  - ms-vscode.cpptools-extension-pack
+  - ms-vscode-remote.remote-containers
+  - redhat.ansible
+  - redhat.vscode-yaml
+
+python_major_version: 3.13  # noqa: var-naming[no-role-prefix]

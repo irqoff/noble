@@ -1,0 +1,50 @@
+---
+- name: Install VirtualBox prerequisites
+  ansible.builtin.apt:
+    name:
+      - dkms
+
+- name: Get stats of VirtualBox key
+  ansible.builtin.stat:
+    path: "{{ virtualbox_key }}"
+  register: result
+
+- name: Install VirtualBox key
+  when: not result.stat.exists
+  block:
+    - name: Download VirtualBox key
+      ansible.builtin.get_url:
+        url: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+        dest: "{{ virtualbox_armored_key }}"
+        mode: '0664'
+
+    - name: Dearmor VirtualBox key
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          cat "{{ virtualbox_armored_key }}" | gpg --dearmor > "{{ virtualbox_key }}"
+        creates: "{{ virtualbox_key }}"
+        executable: /bin/bash
+
+    - name: Remove {{ virtualbox_armored_key }}
+      ansible.builtin.file:
+        path: "{{ virtualbox_armored_key }}"
+        state: absent
+
+- name: Add VirtualBox APT repository
+  ansible.builtin.apt_repository:
+    repo: >-
+      deb [arch=amd64 signed-by={{ virtualbox_key }}] http://download.virtualbox.org/virtualbox/debian
+      {{ ansible_distribution_release }} contrib
+
+- name: Install VirtualBox
+  ansible.builtin.apt:
+    name:
+      - virtualbox-7.1
+    update_cache: "yes"
+
+- name: Add to the vboxusers group
+  ansible.builtin.user:
+    name: "{{ ansible_env['USER'] }}"
+    groups: vboxusers
+    append: "yes"
