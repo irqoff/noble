@@ -58,37 +58,23 @@
     - {key: use-theme-colors, value: "false"}
     - {key: visible-name, value: "'{{ ansible_env['USER'] }}'"}
 
-- name: Check SourceCodePro-Regular.otf
+- name: Check NerdFonts
   ansible.builtin.stat:
-    path: "{{ ansible_env['HOME'] }}/.fonts/SourceCodePro-Regular.otf"
+    path: "{{ ansible_env['HOME'] }}/.local/share/fonts/NerdFonts"
   register: source_code_pro
 
-- name: Install source-code-pro
+- name: Install NerdFonts
   when: not source_code_pro.stat.exists
   block:
-    - name: Download source-code-pro
+    - name: Download NerdFonts
       ansible.builtin.git:
-        repo: https://github.com/adobe-fonts/source-code-pro.git
-        dest: "{{ ansible_env['HOME'] }}/.source-code-pro"
-        version: release
+        repo: https://github.com/ryanoasis/nerd-fonts.git
+        dest: "{{ ansible_env['HOME'] }}/.nerd-fonts"
+        version: master
         depth: 1
 
-    - name: Create .fonts
-      ansible.builtin.file:
-        dest: "{{ ansible_env['HOME'] }}/.fonts"
-        state: directory
-        mode: '0770'
-
-    - name: Copy OTF files
-      ansible.builtin.copy:
-        src: "{{ item }}"
-        dest: "{{ ansible_env['HOME'] }}/.fonts/{{ item | basename }}"
-        remote_src: true
-        mode: preserve
-      loop: "{{ q('fileglob', ansible_env['HOME'] + '/.source-code-pro/OTF/*') }}"
-
-    - name: Build font cache
-      ansible.builtin.command: fc-cache -r -v
+    - name: Install
+      ansible.builtin.command: "{{ ansible_env['HOME'] }}/.nerd-fonts/install.sh"
       changed_when: False
 
 - name: Configure GNOME Terminal fonts
@@ -97,7 +83,7 @@
     value: "{{ item.value }}"
     state: present
   loop:
-    - {key: font, value: "'Source Code Pro Medium 11'"}
+    - {key: font, value: "'SauceCodePro Nerd Font Medium 11'"}
     - {key: use-system-font, value: "false"}
 
 - name: Configure hidden files
