@@ -140,3 +140,38 @@
   become: True
   tags: logitech
   when: desktop_logitech | bool
+
+- name: Check ghostty
+  ansible.builtin.stat:
+    path: /usr/bin/ghostty
+  register: ghostty_bin
+  tags: ghostty
+
+- name: Install Ghostty
+  when: not ghostty_bin.stat.exists
+  tags: ghostty
+  become: True
+  block:
+    - name: Build Docker image
+      community.docker.docker_image:
+        build:
+          path: "{{ ansible_env['HOME'] }}/noble/files/gitignore/ghostty"
+          pull: True
+        source: build
+        name: ghostty
+
+    - name: Copy ghostty deb
+      community.docker.docker_container:
+        name: ghostty
+        image: ghostty
+        command: >-
+          cp /opt/ghostty-{{ desktop_ghostty_version }}/ghostty_{{ desktop_ghostty_version_full }}_amd64.deb
+          /mnt/
+        state: started
+        auto_remove: True
+        volumes:
+          - /tmp:/mnt
+
+    - name: Install ghostty
+      ansible.builtin.apt:
+        deb: /tmp/ghostty_{{ desktop_ghostty_version_full }}_amd64.deb

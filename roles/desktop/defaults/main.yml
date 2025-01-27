@@ -109,3 +109,6 @@ desktop_bookmarks: |
   file:///srv
 
 desktop_logitech: False
+
+desktop_ghostty_version: 1.0.1
+desktop_ghostty_version_full: 1.0.1-0
