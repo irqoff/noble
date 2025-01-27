@@ -175,3 +175,10 @@
     - name: Install ghostty
       ansible.builtin.apt:
         deb: /tmp/ghostty_{{ desktop_ghostty_version_full }}_amd64.deb
+
+- name: Copy ghostty config
+  ansible.builtin.copy:
+    src: ghostty_config
+    dest: "{{ ansible_env['HOME'] }}/.config/ghostty/config"
+    mode: '0640'
+  tags: ghostty
