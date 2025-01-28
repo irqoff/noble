@@ -10,6 +10,7 @@ desktop_gnome_configuration:
   - {key: desktop/screensaverlock-delay/lock-delay, value: "uint32 0"}
   - {key: desktop/search-providers/disable-external, value: "true"}
   - {key: desktop/session/idle-delay, value: "uint32 900"}
+  - {key: shell/extensions/ding/show-home, value: "false"}
   - {key: settings/file-chooser/show-hidden, value: "false"}
   - {key: settings-daemon/plugins/power/sleep-inactive-ac-timeout,
      value: "3600"}
