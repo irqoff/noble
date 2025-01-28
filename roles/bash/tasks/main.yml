@@ -41,6 +41,9 @@
         marker_end: bashrc_end
         marker: "# {mark}"
         block: |
+          if [[ $TERM == "xterm-ghostty" ]]; then
+            stty intr ^T
+          fi
           source {{ ansible_env['HOME'] }}/.bashrc_functions
     - name: Copy .bashrc_functions
       ansible.builtin.copy:
