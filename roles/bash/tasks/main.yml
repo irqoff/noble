@@ -42,6 +42,7 @@
         marker: "# {mark}"
         block: |
           if [[ $TERM == "xterm-ghostty" ]]; then
+            # https://github.com/ghostty-org/ghostty/issues/4522
             stty intr ^T
           fi
           source {{ ansible_env['HOME'] }}/.bashrc_functions
