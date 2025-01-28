@@ -7,7 +7,7 @@
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
 # ghostty workaround
-set -g extended-keys on #!important
+set -g extended-keys off #!important
 
 # -- bindings ------------------------------------------------------------------
 
