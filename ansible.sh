@@ -16,7 +16,7 @@ sudo apt install -y git
 if [[ -d "${HOME}/.pyenv" ]]; then
   cd "${HOME}/.pyenv"
   git pull
-  cd
+  cd "${HOME}/noble"
 else
   git clone https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
 fi
@@ -51,7 +51,7 @@ fi
 if [[ -d "${HOME}/.pyenv/plugins/pyenv-virtualenv" ]]; then
   cd "${HOME}/.pyenv/plugins/pyenv-virtualenv"
   git pull
-  cd
+  cd "${HOME}/noble"
 else
   git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)/plugins/pyenv-virtualenv"
 fi

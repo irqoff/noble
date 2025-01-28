@@ -118,5 +118,5 @@ desktop_bookmarks: |
 
 desktop_logitech: False
 
-desktop_ghostty_version: 1.0.1
-desktop_ghostty_version_full: 1.0.1-0
+desktop_ghostty_version: source
+desktop_ghostty_version_full: source-0

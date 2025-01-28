@@ -7,7 +7,7 @@ vscode_plugins:
   - foxundermoon.shell-format
   - github.copilot
   - gitlab.gitlab-workflow
-  - golang.go-nightly
+  - golang.go
   - hashicorp.hcl
   - hashicorp.terraform
   - marp-team.marp-vscode
