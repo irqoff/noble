@@ -2,9 +2,13 @@
 common_packages:
   - chromium-browser
   - fbreader
+  - flatpak
   - gnupg2
   - pass
   - vlc
   - wl-clipboard
 
 common_snap_packages: []
+
+common_flatpak_packages:
+  - app.zen_browser.zen

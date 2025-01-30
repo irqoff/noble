@@ -13,6 +13,20 @@
     name: "{{ common_snap_packages }}"
   become: True
 
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: Install the gedit package from flathub for current user
+  community.general.flatpak:
+    name: "{{ common_flatpak_packages }}"
+    state: present
+    method: user
+    remote: flathub
+
 - name: Copy .gitconfig
   ansible.builtin.template:
     src: gitconfig
@@ -52,7 +66,7 @@
 - name: Configure sudo
   ansible.builtin.lineinfile:
     path: "/etc/sudoers"
-    line: "{{ ansible_env['USER'] }} ALL=(ALL:ALL) NOPASSWD: /usr/bin/apt,/sbin/reboot,/sbin/shutdown"
+    line: "{{ ansible_env['USER'] }} ALL=(ALL:ALL) NOPASSWD: /sbin/reboot,/sbin/shutdown"
     state: present
     regexp: "^{{ ansible_env['USER'] }} ALL"
     validate: /usr/sbin/visudo -cf %s

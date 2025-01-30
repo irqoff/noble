@@ -98,6 +98,14 @@ desktop_shortcuts:
       {name: "name", value: "'ghostty'"}
     ]
   }
+  - {
+    key: custom9,
+    values: [
+      {name: "binding", value: "'<Primary><Shift><Alt>z'"},
+      {name: "command", value: "'/usr/bin/flatpak run app.zen_browser.zen'"},
+      {name: "name", value: "'zen'"}
+    ]
+  }
 
 desktop_terminal_profiles: ":b1dcc9dd-5262-4d8d-a863-c897e6d979b9"
 
