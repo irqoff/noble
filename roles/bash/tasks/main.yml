@@ -30,7 +30,7 @@
     dest: "{{ ansible_env['HOME'] }}/.inputrc"
     mode: '0640'
 
-- name: Configure Bash functions
+- name: Configure Bash functions and etc
   when: bash_functions | bool
   block:
     - name: Configure .bashrc
@@ -49,6 +49,9 @@
             eval "$(fzf --bash)"
           fi
           source {{ ansible_env['HOME'] }}/.bashrc_functions
+          if [[ -x {{ ansible_env['HOME'] }}/.linuxbrew/bin/fzf ]]; then
+            eval "$(fzf --bash)"
+          fi
     - name: Copy .bashrc_functions
       ansible.builtin.copy:
         src: gitignore/bashrc_functions
