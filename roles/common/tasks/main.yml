@@ -20,7 +20,7 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
 
-- name: Install the gedit package from flathub for current user
+- name: Install packages from flathub for current user
   community.general.flatpak:
     name: "{{ common_flatpak_packages }}"
     state: present

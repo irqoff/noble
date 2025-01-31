@@ -2,6 +2,7 @@
 linuxbrew_packages:
   - bat
   - dos2unix
+  - fzf
   - glow
   - go
   - gomplate

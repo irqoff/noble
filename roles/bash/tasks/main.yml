@@ -43,7 +43,10 @@
         block: |
           if [[ $TERM == "xterm-ghostty" ]]; then
             # https://github.com/ghostty-org/ghostty/issues/4522
-            stty intr ^T
+            stty intr ^G
+          fi
+          if [[ -x {{ ansible_env['HOME'] }}/.linuxbrew/bin/fzf ]]; then
+            eval "$(fzf --bash)"
           fi
           source {{ ansible_env['HOME'] }}/.bashrc_functions
     - name: Copy .bashrc_functions
