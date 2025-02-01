@@ -41,17 +41,10 @@
         marker_end: bashrc_end
         marker: "# {mark}"
         block: |
-          if [[ $TERM == "xterm-ghostty" ]]; then
-            # https://github.com/ghostty-org/ghostty/issues/4522
-            stty intr ^G
-          fi
           if [[ -x {{ ansible_env['HOME'] }}/.linuxbrew/bin/fzf ]]; then
             eval "$(fzf --bash)"
           fi
           source {{ ansible_env['HOME'] }}/.bashrc_functions
-          if [[ -x {{ ansible_env['HOME'] }}/.linuxbrew/bin/fzf ]]; then
-            eval "$(fzf --bash)"
-          fi
     - name: Copy .bashrc_functions
       ansible.builtin.copy:
         src: gitignore/bashrc_functions

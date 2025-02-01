@@ -21,6 +21,7 @@ linuxbrew_packages:
   - rclone
   - shellcheck
   - tmux
+  - zellij
 
 linuxbrew_packages_build:
   - neovim
