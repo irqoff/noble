@@ -18,9 +18,9 @@ desktop_gnome_configuration:
   - {key: settings-daemon/plugins/power/sleep-inactive-ac-type,
      value: "'nothing'"}
   - {key: shell/extensions/dash-to-dock/dock-fixed, value: "false"}
-  - {key: org/gnome/desktop/wm/keybindings/switch-applications,
+  - {key: desktop/wm/keybindings/switch-applications,
      value: "['<Super>p']"}
-  - {key: org/gnome/desktop/wm/keybindings/switch-applications-backward,
+  - {key: desktop/wm/keybindings/switch-applications-backward,
      value: "['<Shift><Super>p']"}
 
 desktop_shortcuts:
