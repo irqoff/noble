@@ -1,0 +1,18 @@
+---
+- name: Create fish directory
+  ansible.builtin.file:
+    dest: "{{ ansible_env['HOME'] }}/.config/fish/"
+    state: directory
+    mode: '0700'
+
+- name: Copy config
+  ansible.builtin.copy:
+    src: config.fish
+    dest: "{{ ansible_env['HOME'] }}/.config/fish/config.fish"
+    mode: '0600'
+
+- name: Copy config
+  ansible.builtin.copy:
+    src: starship.toml
+    dest: "{{ ansible_env['HOME'] }}/.config/starship.toml"
+    mode: '0600'

@@ -24,6 +24,8 @@
       tags: vscode
     - role: bash
       tags: bash
+    - role: fish
+      tags: fish
     - role: desktop
       tags: desktop
     - role: linuxbrew

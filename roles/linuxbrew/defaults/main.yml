@@ -2,6 +2,7 @@
 linuxbrew_packages:
   - bat
   - dos2unix
+  - fish
   - fzf
   - glow
   - go
