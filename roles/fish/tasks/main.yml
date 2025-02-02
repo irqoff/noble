@@ -5,14 +5,32 @@
     state: directory
     mode: '0700'
 
-- name: Copy config
+- name: Copy fish config
   ansible.builtin.copy:
     src: config.fish
     dest: "{{ ansible_env['HOME'] }}/.config/fish/config.fish"
     mode: '0600'
 
-- name: Copy config
+- name: Copy starship config
   ansible.builtin.copy:
     src: starship.toml
     dest: "{{ ansible_env['HOME'] }}/.config/starship.toml"
     mode: '0600'
+
+- name: Create zellij directory
+  ansible.builtin.file:
+    dest: "{{ ansible_env['HOME'] }}/.config/{{ item }}"
+    state: directory
+    mode: '0700'
+  loop:
+    - zellij
+    - zellij/layouts
+
+- name: Copy zellij config
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ ansible_env['HOME'] }}/.config/zellij/{{ item.dest }}"
+    mode: '0600'
+  loop:
+    - {src: config.kdl, dest: config.kdl}
+    - {src: default.kdl, dest: layouts/default.kdl}
