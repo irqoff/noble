@@ -28,4 +28,10 @@ layout {
             }
         }
     }
+    tab name="main"
+    tab name="docs"
+    tab name="dev"
+    tab name="languete"
+    tab name="tmp"
+    tab name="docker"
 }
