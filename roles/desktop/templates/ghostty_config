@@ -3,6 +3,7 @@ font-family = SauceCodePro Nerd Font
 font-size = 14
 background-opacity = 0.95
 gtk-titlebar = false
+command = {{ ansible_env['HOME'] }}/.linuxbrew/bin/fish
 shell-integration = fish
 keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard

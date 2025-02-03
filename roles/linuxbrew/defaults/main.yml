@@ -17,6 +17,7 @@ linuxbrew_packages:
   - kubebuilder
   - lazydocker
   - minikube
+  - neofetch
   - operator-sdk
   - pre-commit
   - rclone

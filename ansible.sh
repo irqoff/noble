@@ -78,7 +78,7 @@ set -o nounset
 
 pip install --upgrade ansible ansible-lint docker pre-commit psutil yamllint
 ansible --version
-ansible-galaxy collection install -r requirements.yml --force
+ansible-galaxy collection install -r requirements.yml
 
 ANSIBLE_PYTHON_INTERPRETER="$(pyenv root)/versions/${python_version}/envs/ansible/bin/python3"
 export ANSIBLE_PYTHON_INTERPRETER

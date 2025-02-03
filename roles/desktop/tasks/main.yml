@@ -83,7 +83,7 @@
     value: "{{ item.value }}"
     state: present
   loop:
-    - {key: font, value: "'SauceCodePro Nerd Font Medium 11'"}
+    - {key: font, value: "'SauceCodePro Nerd Font Medium 14'"}
     - {key: use-system-font, value: "false"}
 
 - name: Configure hidden files
@@ -183,7 +183,7 @@
     mode: '0750'
 
 - name: Copy ghostty config
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: ghostty_config
     dest: "{{ ansible_env['HOME'] }}/.config/ghostty/config"
     mode: '0640'

@@ -6,6 +6,6 @@ Just execute `noble.sh`:
 ./noble.sh
 ```
 
-For run without `noble.sh`, execute `sudo true && export ANSIBLE_PYTHON_INTERPRETER=${PYENV_VIRTUAL_ENV}/bin/python3` and then `ansible-playbook noble.yml`
+`gnome-extensions enable switch-keyboard-layout@ansible` aftes reboot
 
-`gnome-extensions enable switch-keyboard-layout@ansibl` aftes reboot
+For run without `noble.sh`, execute `export python_major_version="3.13" && export ANSIBLE_PYTHON_INTERPRETER=${PYENV_VIRTUAL_ENV}/bin/python3` and then `ansible-playbook noble.yml -K`

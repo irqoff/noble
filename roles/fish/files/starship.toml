@@ -182,7 +182,6 @@ truncation_symbol = "…/"
 
 [python]
 symbol = " "
-pyenv_version_name = true
 
 [time]
 disabled = false

@@ -91,4 +91,6 @@
     marker_end: nodejs_end
     marker: "# {mark}"
     block: |
-      export NODE_EXTRA_CA_CERTS={{ ansible_env['HOME'] }}/.rca.crt
+      if [[ -r {{ ansible_env['HOME'] }}/.rca.crt ]]; then
+        export NODE_EXTRA_CA_CERTS={{ ansible_env['HOME'] }}/.rca.crt
+      fi
