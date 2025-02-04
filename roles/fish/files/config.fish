@@ -12,8 +12,8 @@ end
 
 if test -x (brew --prefix)"/bin/fzf"
     fzf --fish | source
-    bind \cl fzf-file-widget
-    bind -M insert \cl fzf-file-widget
+    bind \c_ fzf-file-widget
+    bind -M insert \c_ fzf-file-widget
 end
 
 if test -x (brew --prefix)"/bin/go"
