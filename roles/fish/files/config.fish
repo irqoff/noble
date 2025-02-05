@@ -46,6 +46,7 @@ if test -x $HOME/.pyenv
 end
 
 abbr k kubectl
+abbr tp tput reset
 abbr v nvim
 abbr vi nvim
 abbr vim nvim
