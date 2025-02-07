@@ -46,4 +46,6 @@ linuxbrew_go_packages:
   - honnef.co/go/tools/cmd/staticcheck@latest
 
 linuxbrew_krew_packages:
+  - ctx
+  - ns
   - oidc-login
