@@ -180,6 +180,13 @@ truncation_symbol = "…/"
 "docs" = "󰈙 "
 "Downloads" = " "
 
+[kubernetes]
+format = '[⛵  $context \($namespace\)](dimmed green) '
+disabled = false
+contexts = [
+  { context_pattern = "dex-context-(?P<cluster>[\\w-]+).kube", context_alias = "$cluster" },
+]
+
 [python]
 symbol = " "
 
