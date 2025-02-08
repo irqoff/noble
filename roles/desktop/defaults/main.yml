@@ -12,12 +12,14 @@ desktop_gnome_configuration:
   - {key: desktop/session/idle-delay, value: "uint32 900"}
   - {key: shell/extensions/ding/show-home, value: "false"}
   - {key: shell/extensions/dash-to-dock/extend-height, value: "false"}
+  - {key: shell/extensions/dash-to-dock/dock-fixed, value: "false"}
+  - {key: shell/extensions/tiling-assistant/tile-bottom-half, value: "@as []"}
+  - {key: shell/extensions/tiling-assistant/tile-top-half, value: "@as []"}
   - {key: settings/file-chooser/show-hidden, value: "false"}
   - {key: settings-daemon/plugins/power/sleep-inactive-ac-timeout,
      value: "3600"}
   - {key: settings-daemon/plugins/power/sleep-inactive-ac-type,
      value: "'nothing'"}
-  - {key: shell/extensions/dash-to-dock/dock-fixed, value: "false"}
   - {key: desktop/wm/keybindings/switch-applications,
      value: "['<Super>p']"}
   - {key: desktop/wm/keybindings/switch-applications-backward,
