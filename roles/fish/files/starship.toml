@@ -183,6 +183,7 @@ truncation_symbol = "…/"
 [kubernetes]
 format = '[⛵  $context \($namespace\)](dimmed green) '
 disabled = false
+detect_env_vars = ["AT_WORK"]
 contexts = [
   { context_pattern = "dex-context-(?P<cluster>[\\w-]+).kube", context_alias = "$cluster" },
 ]

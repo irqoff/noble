@@ -31,7 +31,7 @@ layout {
     tab name="main"
     tab name="docs"
     tab name="dev"
-    tab name="languete"
+    tab name="language"
     tab name="tmp"
     tab name="docker"
 }

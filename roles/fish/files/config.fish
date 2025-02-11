@@ -14,6 +14,9 @@ if test -x (brew --prefix)"/bin/fzf"
     fzf --fish | source
     bind \c_ fzf-file-widget
     bind -M insert \c_ fzf-file-widget
+    set -x FZF_CTRL_T_OPTS "--walker-skip .git --preview 'bat -n --color=always {}' --style minimal --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+    set -x FZF_CTRL_R_OPTS "--bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -i -target primary)+abort'"
+    set -x FZF_ALT_C_OPTS " --walker-skip .git --style minimal --preview 'tree -C {}'"
 end
 
 if test -x (brew --prefix)"/bin/go"
