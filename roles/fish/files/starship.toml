@@ -175,6 +175,7 @@ error_symbol = '[](bold fg:red)'
 [directory]
 read_only = " 󰌾"
 truncation_symbol = "…/"
+truncation_length = 5
 
 [directory.substitutions]
 "docs" = "󰈙 "
