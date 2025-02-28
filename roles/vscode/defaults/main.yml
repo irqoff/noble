@@ -20,3 +20,6 @@ vscode_plugins:
   - redhat.vscode-yaml
 
 python_major_version: 3.13  # noqa: var-naming[no-role-prefix]
+
+vscode_kernel_long: 6.11.0-17
+vscode_kernel_short: 6.11
