@@ -107,8 +107,8 @@ desktop_shortcuts:
   - {
     key: custom9,
     values: [
-      {name: "binding", value: "'<Primary><Shift><Alt>z'"},
-      {name: "command", value: "'/usr/bin/flatpak run app.zen_browser.zen'"},
+      {name: "binding", value: "'<Primary><Shift><Alt>b'"},
+      {name: "command", value: "'/usr/bin/brave-browser'"},
       {name: "name", value: "'zen'"}
     ]
   }

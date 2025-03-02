@@ -10,5 +10,4 @@ common_packages:
 
 common_snap_packages: []
 
-common_flatpak_packages:
-  - app.zen_browser.zen
+common_flatpak_packages: []

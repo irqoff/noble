@@ -1,0 +1,25 @@
+---
+- name: Get stats of Brave key
+  ansible.builtin.stat:
+    path: "{{ brave_key }}"
+  register: result
+
+- name: Install Brave key
+  when: not result.stat.exists
+  block:
+    - name: Download Brave key
+      ansible.builtin.get_url:
+        url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+        dest: "{{ brave_key }}"
+        mode: '0664'
+
+- name: Add Brave APT repository
+  ansible.builtin.apt_repository:
+    repo: >-
+      deb [signed-by={{ brave_key }}]
+      https://brave-browser-apt-release.s3.brave.com/ stable main
+
+- name: Install Brave packages
+  ansible.builtin.apt:
+    name: "{{ brave_packages }}"
+    update_cache: "yes"

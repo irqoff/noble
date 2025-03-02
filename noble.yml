@@ -11,6 +11,9 @@
       become: true
     - role: common
       tags: common
+    - role: brave
+      tags: brave
+      become: true
     - role: docker
       tags: docker
       become: true

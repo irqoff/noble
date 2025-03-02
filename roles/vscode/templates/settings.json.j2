@@ -28,5 +28,10 @@
         "/usr/src/linux-headers-{{ vscode_kernel_long }}-generic/arch/x86/include/generated",
         "/usr/src/linux-hwe-{{ vscode_kernel_short }}-headers-{{ vscode_kernel_long }}/arch/x86/include",
         "/usr/src/linux-headers-{{ vscode_kernel_long }}-generic/include"
+    ],
+    "C_Cpp.default.defines": [
+        "__KERNEL__",
+        "MODULE",
+        "KBUILD_MODNAME=\"hello\""
     ]
 }

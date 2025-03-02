@@ -1,0 +1,4 @@
+---
+brave_key: /etc/apt/trusted.gpg.d/brave-browser-archive-keyring.gpg
+brave_packages:
+  - brave-browser
