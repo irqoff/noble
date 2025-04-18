@@ -136,3 +136,4 @@ desktop_logitech: False
 
 desktop_ghostty_version: source
 desktop_ghostty_version_full: source-0
+desktop_ghostty_commit: 1.1.4-main+85268d4

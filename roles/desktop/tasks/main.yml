@@ -165,7 +165,7 @@
         name: ghostty
         image: ghostty
         command: >-
-          cp /opt/ghostty-{{ desktop_ghostty_version }}/ghostty_{{ desktop_ghostty_version_full }}_amd64.deb
+          cp /opt/ghostty-{{ desktop_ghostty_commit }}/ghostty_{{ desktop_ghostty_version_full }}_amd64.deb
           /mnt/
         state: started
         auto_remove: True
