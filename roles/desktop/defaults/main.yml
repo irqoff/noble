@@ -109,7 +109,7 @@ desktop_shortcuts:
     values: [
       {name: "binding", value: "'<Primary><Shift><Alt>b'"},
       {name: "command", value: "'/usr/bin/brave-browser'"},
-      {name: "name", value: "'brave'"}
+      {name: "name", value: "'brave-browser'"}
     ]
   }
 
