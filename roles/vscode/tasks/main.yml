@@ -52,3 +52,9 @@
     src: settings.json.j2
     dest: "{{ ansible_env['HOME'] }}/.config/Code - Insiders/User/settings.json"
     mode: '0664'
+
+- name: Remove /etc/apt/sources.list.d/vscode.sources
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/vscode.sources
+    state: absent
+  become: true

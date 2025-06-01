@@ -159,6 +159,8 @@
           pull: True
         source: build
         name: ghostty
+      retries: 3
+      delay: 20
 
     - name: Copy ghostty deb
       community.docker.docker_container:

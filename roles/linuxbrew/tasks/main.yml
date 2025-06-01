@@ -33,11 +33,15 @@
     name: "{{ linuxbrew_packages_build }}"
     install_options: build-from-source
   tags: ["linuxbrew_packages"]
+  retries: 3
+  delay: 3
 
 - name: Install brew packages
   community.general.homebrew:
     name: "{{ linuxbrew_packages }}"
   tags: ["linuxbrew_packages"]
+  retries: 3
+  delay: 3
 
 - name: Install Go tools
   ansible.builtin.command: go install -v {{ item }}
