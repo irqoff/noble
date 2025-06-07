@@ -1,5 +1,6 @@
 ---
 linuxbrew_packages:
+  - awscli
   - bat
   - dos2unix
   - fish
