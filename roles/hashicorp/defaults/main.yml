@@ -5,3 +5,4 @@ hashicorp_packages:
   - packer
   - terraform
   - vagrant
+  - vault
