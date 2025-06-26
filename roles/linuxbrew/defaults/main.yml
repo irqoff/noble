@@ -16,6 +16,7 @@ linuxbrew_packages:
   - kind
   - krew
   - kubebuilder
+  - kustomize
   - lazydocker
   - minikube
   - neofetch
@@ -24,8 +25,10 @@ linuxbrew_packages:
   - pre-commit
   - rclone
   - shellcheck
+  - siderolabs/tap/sidero-tools
   - starship
   - tmux
+  - yq
   - zellij
 
 linuxbrew_packages_build:
