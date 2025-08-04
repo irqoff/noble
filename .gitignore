@@ -1,4 +1,5 @@
 .facts_cache
 files/gitignore
 files/plugins
+group_vars/irqoff/gitignore.yaml
 .vscode

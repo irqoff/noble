@@ -7,10 +7,10 @@
 - name: Get stats of Docker key
   ansible.builtin.stat:
     path: "{{ docker_key }}"
-  register: result
+  register: docker_result
 
 - name: Install Docker key
-  when: not result.stat.exists
+  when: not docker_result.stat.exists
   block:
     - name: Download Docker key
       ansible.builtin.get_url:

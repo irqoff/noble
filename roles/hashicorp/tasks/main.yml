@@ -2,10 +2,10 @@
 - name: Get stats of Hashicorp key
   ansible.builtin.stat:
     path: "{{ hashicorp_key }}"
-  register: result
+  register: hashicorp_result
 
 - name: Install Hashicorp key
-  when: not result.stat.exists
+  when: not hashicorp_result.stat.exists
   block:
     - name: Download Hashicorp key
       ansible.builtin.get_url:

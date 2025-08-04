@@ -3,6 +3,7 @@ common_packages:
   - chromium-browser
   - fbreader
   - flatpak
+  - gnome-shell-extension-manager
   - gnupg2
   - pass
   - vlc

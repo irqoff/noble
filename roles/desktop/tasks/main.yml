@@ -61,10 +61,10 @@
 - name: Check NerdFonts
   ansible.builtin.stat:
     path: "{{ ansible_env['HOME'] }}/.local/share/fonts/NerdFonts"
-  register: source_code_pro
+  register: desktop_source_code_pro
 
 - name: Install NerdFonts
-  when: not source_code_pro.stat.exists
+  when: not desktop_source_code_pro.stat.exists
   block:
     - name: Download NerdFonts
       ansible.builtin.git:
@@ -113,8 +113,8 @@
 
 - name: Create custom-keybindings key
   ansible.builtin.set_fact:
-    custom_keybindings: >-
-      {{ custom_keybindings | default([]) +
+    desktop_custom_keybindings: >-
+      {{ desktop_custom_keybindings | default([]) +
       ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' + item.key + '/'] }}
   loop: "{{ desktop_shortcuts }}"
   tags: shortcuts
@@ -122,7 +122,7 @@
 - name: Configure custom-keybindings
   ansible.legacy.dconf:  # noqa: fqcn[canonical]
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-    value: "{{ custom_keybindings }}"
+    value: "{{ desktop_custom_keybindings }}"
     state: present
   tags: shortcuts
 
@@ -144,11 +144,11 @@
 - name: Check ghostty
   ansible.builtin.stat:
     path: /usr/bin/ghostty
-  register: ghostty_bin
+  register: desktop_ghostty_bin
   tags: ghostty
 
 - name: Install Ghostty
-  when: not ghostty_bin.stat.exists
+  when: not desktop_ghostty_bin.stat.exists
   tags: ghostty
   become: True
   block:
@@ -190,3 +190,21 @@
     dest: "{{ ansible_env['HOME'] }}/.config/ghostty/config"
     mode: '0640'
   tags: ghostty
+
+- name: Install Ghostty
+  when: desktop_5k | d(false)
+  tags: 5k
+  block:
+    - name: Configure Tiling Assistant
+      ansible.legacy.dconf:  # noqa: fqcn[canonical]
+        key: "/org/gnome/shell/extensions/tiling-assistant/{{ item.key }}"
+        value: "{{ item.value }}"
+        state: present
+      loop:
+        - {key: enable-advanced-experimental-features, value: "true"}
+        - {key: activate-layout4, value: "['<Shift><Control><Alt>t']"}
+    - name: Copy layouts.json
+      ansible.builtin.copy:
+        src: "layouts.json"
+        dest: "{{ ansible_env['HOME'] }}/.config/tiling-assistant/layouts.json"
+        mode: '0640'

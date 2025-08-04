@@ -2,10 +2,10 @@
 - name: Get stats of Visual Studio Code key
   ansible.builtin.stat:
     path: "{{ vscode_key }}"
-  register: result
+  register: vscode_result
 
 - name: Install Visual Studio Code key
-  when: not result.stat.exists
+  when: not vscode_result.stat.exists
   become: true
   block:
     - name: Download Visual Studio Code key

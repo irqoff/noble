@@ -2,10 +2,10 @@
 - name: Get stats of Brave key
   ansible.builtin.stat:
     path: "{{ brave_key }}"
-  register: result
+  register: brave_result
 
 - name: Install Brave key
-  when: not result.stat.exists
+  when: not brave_result.stat.exists
   block:
     - name: Download Brave key
       ansible.builtin.get_url:

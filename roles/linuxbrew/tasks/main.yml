@@ -46,13 +46,13 @@
 - name: Install Go tools
   ansible.builtin.command: go install -v {{ item }}
   loop: "{{ linuxbrew_go_packages }}"
-  register: result
-  changed_when: "'downloading' in result.stderr"
+  register: linuxbrew_result
+  changed_when: "'downloading' in linuxbrew_result.stderr"
   tags: ["linuxbrew_packages"]
 
 - name: Install krew plugins
   ansible.builtin.command: kubectl krew install {{ item }}
   loop: "{{ linuxbrew_krew_packages }}"
-  register: result
-  changed_when: "'Installed' in result.stdout"
+  register: linuxbrew_result
+  changed_when: "'Installed' in linuxbrew_result.stdout"
   tags: ["linuxbrew_packages"]
