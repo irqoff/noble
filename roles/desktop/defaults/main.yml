@@ -7,7 +7,7 @@ desktop_gnome_configuration:
   - {key: desktop/interface/icon-theme, value: "'Yaru'"}
   - {key: desktop/notifications/show-in-lock-screen, value: "false"}
   - {key: desktop/privacy/remember-recent-files, value: "false"}
-  - {key: desktop/screensaverlock-delay/lock-delay, value: "uint32 0"}
+  - {key: desktop/screensaver/lock-delay, value: "uint32 0"}
   - {key: desktop/search-providers/disable-external, value: "true"}
   - {key: desktop/session/idle-delay, value: "uint32 900"}
   - {key: shell/extensions/ding/show-home, value: "false"}
