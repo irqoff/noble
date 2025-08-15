@@ -15,6 +15,7 @@ desktop_gnome_configuration:
   - {key: shell/extensions/dash-to-dock/dock-fixed, value: "false"}
   - {key: shell/extensions/tiling-assistant/tile-bottom-half, value: "@as []"}
   - {key: shell/extensions/tiling-assistant/tile-top-half, value: "@as []"}
+  - {key: shell/disable-user-extensions, value: "false"}
   - {key: settings/file-chooser/show-hidden, value: "false"}
   - {key: settings-daemon/plugins/power/sleep-inactive-ac-timeout,
      value: "3600"}
