@@ -37,6 +37,18 @@
     - extension.js
     - metadata.json
 
+- name: Configure systemd lid switch handling
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/logind.conf
+    regexp: "^#?{{ item.key }}="
+    line: "{{ item.key }}=ignore"
+    state: present
+  loop:
+    - {key: HandleLidSwitch}
+    - {key: HandleLidSwitchExternalPower}
+    - {key: HandleLidSwitchDocked}
+  become: true
+
 - name: Configure GNOME Terminal keybinding
   ansible.legacy.dconf:  # noqa: fqcn[canonical]
     key: "/org/gnome/terminal/legacy/keybindings/{{ item.key }}"
