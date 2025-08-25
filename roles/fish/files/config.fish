@@ -38,7 +38,7 @@ if test -x (brew --prefix)"/bin/kubectl-krew"
 end
 
 if test -x (brew --prefix)"/bin/nelm"
-     nelm completion fish | source
+     nelm completion fish | sed 's/NELM_ACTIVE_HELP=0 //' | source
 end
 
 if test -r $HOME/.rca.crt
