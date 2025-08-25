@@ -19,6 +19,7 @@ linuxbrew_packages:
   - kustomize
   - lazydocker
   - minikube
+  - nelm
   - neofetch
   - opentofu
   - operator-sdk

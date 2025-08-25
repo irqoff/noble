@@ -37,6 +37,10 @@ if test -x (brew --prefix)"/bin/kubectl-krew"
     fish_add_path $HOME/.krew/bin
 end
 
+if test -x (brew --prefix)"/bin/nelm"
+     nelm completion fish | source
+end
+
 if test -r $HOME/.rca.crt
     set -x NODE_EXTRA_CA_CERTS $HOME/.rca.crt
 end
