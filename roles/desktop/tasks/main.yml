@@ -203,7 +203,7 @@
     mode: '0640'
   tags: ghostty
 
-- name: Install Ghostty
+- name: Configure Tiling
   when: desktop_5k | d(false)
   tags: 5k
   block:
