@@ -59,6 +59,8 @@ abbr vi nvim
 abbr vim nvim
 abbr z zellij attach -c main
 
+set -x EDITOR nvim
+
 function fish_greeting
     neofetch
 end
