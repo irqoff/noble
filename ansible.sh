@@ -5,7 +5,7 @@ set -o errexit -o nounset -o xtrace
 sudo true
 
 readonly custom_bashrc="${HOME}/.bashrc_${USER}"
-readonly python_major_version="3.13"
+readonly python_major_version="3.14"
 export python_major_version
 readonly venv="ansible"
 

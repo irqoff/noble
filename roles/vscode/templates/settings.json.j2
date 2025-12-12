@@ -10,7 +10,7 @@
         "vscode-kubernetes.kubectl-path": "{{ ansible_env['HOME'] }}/.linuxbrew/bin/kubectl",
         "vscode-kubernetes.minikube-path": "{{ ansible_env['HOME'] }}/.linuxbrew/bin/minikube"
     },
-    "python.defaultInterpreterPath": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/python3",
+    "python-envs.defaultEnvManager": "ms-python.python:pyenv",
     "ansible.validation.lint.path": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/ansible-lint",
     "ansible.ansible.path": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/ansible",
     "ansible.python.interpreterPath": "{{ ansible_env['HOME'] }}/.pyenv/versions/{{ python_major_version }}/envs/python{{ python_major_version }}/bin/python3",
