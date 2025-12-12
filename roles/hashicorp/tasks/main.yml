@@ -30,7 +30,7 @@
   ansible.builtin.apt_repository:
     repo: >-
       deb [signed-by=/etc/apt/trusted.gpg.d/packages.hashicorp.gpg]
-      https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+      https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main
 
 - name: Install Hashicorp packages
   ansible.builtin.apt:

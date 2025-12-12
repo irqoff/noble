@@ -50,7 +50,7 @@
 - name: Copy vscode configuration
   ansible.builtin.template:
     src: settings.json.j2
-    dest: "{{ ansible_env['HOME'] }}/.config/Code - Insiders/User/settings.json"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/Code - Insiders/User/settings.json"
     mode: '0664'
 
 - name: Remove /etc/apt/sources.list.d/vscode.sources

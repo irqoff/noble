@@ -2,24 +2,24 @@
 - name: Install linuxbrew
   ansible.builtin.git:
     repo: https://github.com/Homebrew/brew
-    dest: "{{ ansible_env['HOME'] }}/.linuxbrew/Homebrew"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.linuxbrew/Homebrew"
     version: master
 
 - name: Create .linuxbrew/bin
   ansible.builtin.file:
-    dest: "{{ ansible_env['HOME'] }}/.linuxbrew/bin"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.linuxbrew/bin"
     state: directory
     mode: '0770'
 
 - name: Create symlink
   ansible.builtin.file:
-    src: "{{ ansible_env['HOME'] }}/.linuxbrew/Homebrew/bin/brew"
-    dest: "{{ ansible_env['HOME'] }}/.linuxbrew/bin/brew"
+    src: "{{ lookup('ansible.builtin.env', 'HOME') }}/.linuxbrew/Homebrew/bin/brew"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.linuxbrew/bin/brew"
     state: link
 
 - name: Configure .bashrc
   ansible.builtin.blockinfile:
-    path: "{{ ansible_env['HOME'] }}/.bashrc_{{ ansible_env['USER'] }}"
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.bashrc_{{ lookup('ansible.builtin.env', 'USER') }}"
     insertbefore: "^# pyenv_begin"
     marker_begin: linuxbrew_begin
     marker_end: linuxbrew_end

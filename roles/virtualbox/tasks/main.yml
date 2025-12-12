@@ -35,7 +35,7 @@
   ansible.builtin.apt_repository:
     repo: >-
       deb [arch=amd64 signed-by={{ virtualbox_key }}] http://download.virtualbox.org/virtualbox/debian
-      {{ ansible_distribution_release }} contrib
+      {{ ansible_facts['distribution_release'] }} contrib
 
 - name: Install VirtualBox
   ansible.builtin.apt:
@@ -45,6 +45,6 @@
 
 - name: Add to the vboxusers group
   ansible.builtin.user:
-    name: "{{ ansible_env['USER'] }}"
+    name: "{{ lookup('ansible.builtin.env', 'USER') }}"
     groups: vboxusers
     append: "yes"

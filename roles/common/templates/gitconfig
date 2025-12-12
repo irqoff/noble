@@ -1,5 +1,5 @@
 [user]
         name = Aleksandr Usov
-        email = {{ common_git_email | d(ansible_env['USER']+'@gmail.com') }}
+        email = {{ common_git_email | d(lookup('ansible.builtin.env', 'USER')+'@gmail.com') }}
 [credential]
         helper = cache

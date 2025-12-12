@@ -9,7 +9,7 @@ python_files:
   - src: aptsources
     dst: aptsources
 
-python_version_local: "{{ ansible_env['python_version'] | default('3.13.0') }}"
+python_version_local: "{{ lookup('ansible.builtin.env', 'python_version') | default('3.13.0') }}"
 
 python_pip_packages:
   - ansible

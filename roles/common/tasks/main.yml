@@ -30,45 +30,45 @@
 - name: Copy .gitconfig
   ansible.builtin.template:
     src: gitconfig
-    dest: "{{ ansible_env['HOME'] }}/.gitconfig"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.gitconfig"
     mode: "0640"
 
 - name: Create .config/nvim
   ansible.builtin.file:
     state: directory
-    path: "{{ ansible_env['HOME'] }}/.config/nvim"
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/nvim"
     mode: "0770"
 
 - name: Copy .vimrc
   ansible.builtin.copy:
     src: vimrc
-    dest: "{{ ansible_env['HOME'] }}/.config/nvim/init.vim"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/nvim/init.vim"
     mode: "0640"
 
 - name: Install Oh My Tmux
   ansible.builtin.git:
     repo: https://github.com/gpakosz/.tmux.git
-    dest: "{{ ansible_env['HOME'] }}/.tmux"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.tmux"
     version: master
 
 - name: Create .tmux link
   ansible.builtin.file:
-    src: "{{ ansible_env['HOME'] }}/.tmux/.tmux.conf"
-    dest: "{{ ansible_env['HOME'] }}/.tmux.conf"
+    src: "{{ lookup('ansible.builtin.env', 'HOME') }}/.tmux/.tmux.conf"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.tmux.conf"
     state: link
 
 - name: Copy .tmux.conf.local
   ansible.builtin.copy:
     src: tmux.conf.local
-    dest: "{{ ansible_env['HOME'] }}/.tmux.conf.local"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.tmux.conf.local"
     mode: "0640"
 
 - name: Configure sudo
   ansible.builtin.lineinfile:
     path: "/etc/sudoers"
-    line: "{{ ansible_env['USER'] }} ALL=(ALL:ALL) NOPASSWD: /sbin/reboot,/sbin/shutdown"
+    line: "{{ lookup('ansible.builtin.env', 'USER') }} ALL=(ALL:ALL) NOPASSWD: /sbin/reboot,/sbin/shutdown"
     state: present
-    regexp: "^{{ ansible_env['USER'] }} ALL"
+    regexp: "^{{ lookup('ansible.builtin.env', 'USER') }} ALL"
     validate: /usr/sbin/visudo -cf %s
   become: True
 
@@ -76,6 +76,6 @@
   ansible.builtin.cron:
     name: "Cron commit"
     minute: "*/10"
-    job: "cd /home/{{ ansible_env['USER'] }}/docs && /usr/bin/git add . && /usr/bin/git commit -m 'cron commit'"
+    job: "cd /home/{{ lookup('ansible.builtin.env', 'USER') }}/docs && /usr/bin/git add . && /usr/bin/git commit -m 'cron commit'"
   tags: ["cron"]
   when: (common_cron | default(False)) | bool

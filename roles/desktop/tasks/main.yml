@@ -24,14 +24,14 @@
 
 - name: Creaet extensions dir
   ansible.builtin.file:
-    dest: "{{ ansible_env['HOME'] }}/.local/share/gnome-shell/extensions/switch-keyboard-layout@ansible"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/gnome-shell/extensions/switch-keyboard-layout@ansible"
     state: directory
     mode: '0750'
 
 - name: Copy extension file
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ ansible_env['HOME'] }}/.local/share/gnome-shell/extensions/switch-keyboard-layout@ansible"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/gnome-shell/extensions/switch-keyboard-layout@ansible"
     mode: '0640'
   loop:
     - extension.js
@@ -68,11 +68,11 @@
     - {key: background-color, value: "'rgb(0,0,0)'"}
     - {key: foreground-color, value: "'rgb(255,255,255)'"}
     - {key: use-theme-colors, value: "false"}
-    - {key: visible-name, value: "'{{ ansible_env['USER'] }}'"}
+    - {key: visible-name, value: "'{{ lookup('ansible.builtin.env', 'USER') }}'"}
 
 - name: Check NerdFonts
   ansible.builtin.stat:
-    path: "{{ ansible_env['HOME'] }}/.local/share/fonts/NerdFonts"
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/fonts/NerdFonts"
   register: desktop_source_code_pro
 
 - name: Install NerdFonts
@@ -81,12 +81,12 @@
     - name: Download NerdFonts
       ansible.builtin.git:
         repo: https://github.com/ryanoasis/nerd-fonts.git
-        dest: "{{ ansible_env['HOME'] }}/.nerd-fonts"
+        dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.nerd-fonts"
         version: master
         depth: 1
 
     - name: Install
-      ansible.builtin.command: "{{ ansible_env['HOME'] }}/.nerd-fonts/install.sh"
+      ansible.builtin.command: "{{ lookup('ansible.builtin.env', 'HOME') }}/.nerd-fonts/install.sh"
       changed_when: False
 
 - name: Configure GNOME Terminal fonts
@@ -100,7 +100,7 @@
 
 - name: Configure hidden files
   ansible.builtin.blockinfile:
-    path: "{{ ansible_env['HOME'] }}/.hidden"
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.hidden"
     block: "{{ desktop_hidden }}"
     create: true
     mode: '0640'
@@ -108,7 +108,7 @@
 
 - name: Configure bookmarks
   ansible.builtin.copy:
-    dest: "{{ ansible_env['HOME'] }}/.config/gtk-3.0/bookmarks"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/gtk-3.0/bookmarks"
     content: "{{ desktop_bookmarks }}"
     mode: '0664'
   tags: bookmarks
@@ -167,7 +167,7 @@
     - name: Build Docker image
       community.docker.docker_image:
         build:
-          path: "{{ ansible_env['HOME'] }}/noble/files/gitignore/ghostty"
+          path: "{{ lookup('ansible.builtin.env', 'HOME') }}/noble/files/gitignore/ghostty"
           pull: True
         source: build
         name: ghostty
@@ -192,14 +192,14 @@
 
 - name: Creaet ghostty dir
   ansible.builtin.file:
-    dest: "{{ ansible_env['HOME'] }}/.config/ghostty"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/ghostty"
     state: directory
     mode: '0750'
 
 - name: Copy ghostty config
   ansible.builtin.template:
     src: ghostty_config
-    dest: "{{ ansible_env['HOME'] }}/.config/ghostty/config"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/ghostty/config"
     mode: '0640'
   tags: ghostty
 
@@ -218,5 +218,5 @@
     - name: Copy layouts.json
       ansible.builtin.copy:
         src: "layouts.json"
-        dest: "{{ ansible_env['HOME'] }}/.config/tiling-assistant/layouts.json"
+        dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/tiling-assistant/layouts.json"
         mode: '0640'
