@@ -4,3 +4,4 @@ common_cron: yes
 desktop_logitech: yes
 enable_vpn: no
 fish_functions: yes
+desktop_5k: yes
