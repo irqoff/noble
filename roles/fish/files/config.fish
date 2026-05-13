@@ -1,3 +1,5 @@
+cd /home/irqoff
+
 if test -d .linuxbrew
   .linuxbrew/bin/brew shellenv | source
 end
